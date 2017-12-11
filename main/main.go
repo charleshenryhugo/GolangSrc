@@ -14,6 +14,6 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	structpack.IntInits()
-
+	h := new(structpack.HSon)
+	h.PR()
 }

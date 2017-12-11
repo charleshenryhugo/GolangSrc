@@ -45,16 +45,41 @@ type dad struct {
 	weight int
 }
 
+func (_ *dad) PR() {
+	fmt.Println("I am dad.")
+}
+
 type mom struct {
 	height int
 	weight int
 }
 
+func (_ *mom) PR() {
+	fmt.Println("I am mom.")
+}
+
 type son struct {
-	dad
-	mom
+	dad    //son can use dad's members and methods
+	mom    //son can use mom's members and methods
 	height int
 	weight int
+}
+
+func (_ son) PR() {
+	fmt.Println("I am son.")
+}
+
+type HSon struct {
+	bob son
+}
+
+func (h *HSon) PR() {
+	fmt.Println("Last me is bob, he once said:")
+	h.bob.PR()
+	fmt.Println("Last me's father once said:")
+	h.bob.dad.PR()
+	fmt.Println("Last me's mom once said:")
+	h.bob.mom.PR()
 }
 
 func SonInits() {
@@ -62,6 +87,9 @@ func SonInits() {
 	fmt.Println(bob.height)
 	fmt.Println(bob.dad.height)
 	fmt.Println(bob.mom.height)
+	bob.dad.PR()
+	bob.mom.PR()
+	bob.PR()
 }
 
 type innerS struct {
