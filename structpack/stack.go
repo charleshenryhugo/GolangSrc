@@ -5,6 +5,13 @@ import (
 	"math"
 )
 
+type Stack interface {
+	Init()
+	Push(interface{})
+	Pop() interface{}
+	String() string
+}
+
 //StackList is a stack implemented by list of interface{}
 type StackList struct {
 	bottom *listNode
@@ -19,6 +26,7 @@ func (sta *StackList) Init() {
 	sta.top.val = "Bottom-of-stack"
 	sta.bottom = sta.top
 	sta.ready = true
+	//return sta
 }
 
 //Push pushes an interface{} into the StackList
@@ -68,6 +76,7 @@ func (sta *StackArr) Init() {
 	sta.head = -1
 	sta.arr = make([]interface{}, 0)
 	sta.ready = true
+	//return sta
 }
 
 //Push pushes an interface{} into the StackArr
