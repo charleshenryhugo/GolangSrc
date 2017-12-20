@@ -14,6 +14,6 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	NodeTest()
+	TypeAssertTest()
 
 }

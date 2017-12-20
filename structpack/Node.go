@@ -27,19 +27,33 @@ type binaryNode struct {
 	right *binaryNode
 }
 
-func (n *binaryNode) info() {
+func (n binaryNode) info() {
 	fmt.Printf("val: %v  left: %p  right: %p ",
 		n.val, n.left, n.right)
 }
 
 //NodeTest shows the testcase fot Node
 func NodeTest() {
-	node := new(listNode)
-	tType := reflect.TypeOf(*node)
+	nod := new(listNode)
+	tType := reflect.TypeOf(*nod)
 	fmt.Println(tType)
 	nField := tType.NumField()
 	for ix := 0; ix < nField; ix++ {
 		ixField := tType.Field(ix)
 		fmt.Println(ixField.Name)
+	}
+}
+
+func TypeAssertTest() {
+	var nodes []node
+	lNode := new(listNode)
+	bNode := binaryNode{}
+	nodes = []node{lNode, bNode}
+
+	if u, ok := nodes[0].(*listNode); ok {
+		fmt.Printf("%T", u)
+	}
+	if u, ok := nodes[1].(binaryNode); ok {
+		fmt.Printf("%T", u)
 	}
 }
