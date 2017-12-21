@@ -126,11 +126,11 @@ func mapFunc(fn func(int) int, intList ...int) []int {
 }
 
 func reboot() error {
-	const UNIX_REBOOT_MAGIC1 uintptr = 0xfee1dead
-	const UNIX_REBOOT_MAGIC2 uintptr = 672274793
-	const UNIX_REBOOT_CMD_RESTART uintptr = 0x1234567
+	const UNIXREBOOTMAGIC1 uintptr = 0xfee1dead
+	const UNIXREBOOTMAGIC2 uintptr = 672274793
+	const UNIXREBOOTCMDRESTART uintptr = 0x1234567
 	_, _, err := syscall.Syscall(syscall.SYS_REBOOT,
-		UNIX_REBOOT_MAGIC1, UNIX_REBOOT_MAGIC2,
-		UNIX_REBOOT_CMD_RESTART)
+		UNIXREBOOTMAGIC1, UNIXREBOOTMAGIC2,
+		UNIXREBOOTCMDRESTART)
 	return err
 }

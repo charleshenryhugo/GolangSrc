@@ -5,18 +5,18 @@ import (
 	"sync"
 )
 
-type Info struct {
+type info struct {
 	Rwmu sync.RWMutex
 	mu   sync.Mutex
 	name string
 }
 
-type SyncedBuffer struct {
+type syncedBuffer struct {
 	lock   sync.Mutex
 	buffer bytes.Buffer
 }
 
-func update(pInfo *Info) {
+func update(pInfo *info) {
 	pInfo.mu.Lock()
 	pInfo.name = "new name1"
 	pInfo.mu.Unlock()

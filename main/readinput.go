@@ -46,12 +46,12 @@ func wordLetterCount(c byte) (nletter int, nword int, nline int) {
 		return -1, -1, -1
 	}
 	var (
-		nByte   int = len(bytes)
+		nByte   = len(bytes)
 		nSpace  int
 		nLetter int
 		nWord   int
-		nLine   int  = 1
-		flag    bool = true
+		nLine   = 1
+		flag    = true
 	)
 	for _, v := range bytes {
 		if v == ' ' {

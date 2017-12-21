@@ -66,7 +66,7 @@ func funcParameter() (int, int) {
 	str := "hahaha hahaha hahaha"
 	index1 := strings.IndexFunc(str, unicode.IsSpace)
 	fmt.Printf("the first space in \"hahaha hahaha hahaha\" is at %d\n", index1)
-	index2 := strings.IndexFunc(str, isAscii)
+	index2 := strings.IndexFunc(str, isASCII)
 	return index1, index2
 }
 

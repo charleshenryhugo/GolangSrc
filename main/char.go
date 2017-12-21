@@ -29,7 +29,7 @@ func replUnASCII(r rune) rune {
 	return r
 }
 
-func isAscii(c rune) bool {
+func isASCII(c rune) bool {
 	if c > 255 {
 		return false
 	}

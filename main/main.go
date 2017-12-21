@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	. "structpack"
+	structs "structpack"
 )
 
 //"math"
@@ -14,6 +14,5 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	TypeAssertTest()
-
+	structs.TypeAssertTest()
 }

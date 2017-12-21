@@ -5,6 +5,7 @@ import (
 	"runtime"
 )
 
+//GCTest is a simple test for GarbageCollection
 func GCTest() {
 	strings := randomStrings(10000)
 	fmt.Println(strings)
