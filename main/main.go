@@ -5,8 +5,6 @@ import (
 	structs "structpack"
 )
 
-//"math"
-
 func show(values ...interface{}) {
 	for _, value := range values {
 		fmt.Println(value)
@@ -14,5 +12,5 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	structs.TypeAssertTest()
+	structs.GDTest()
 }
