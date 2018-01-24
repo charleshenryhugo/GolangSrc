@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<defaults>
+  <emailListFile>emailListFile</emailListFile>
+  <slackListFile>slackListFile</slackListFile>
+  <subject>New Notification</subject>
+  <message>newdsdaMsdddddd!!!</message>
+  <messageFile>aaa.txt</messageFile>
+</defaults>

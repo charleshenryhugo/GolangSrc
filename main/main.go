@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	structs "structpack"
 )
 
 func show(values ...interface{}) {
@@ -12,5 +11,5 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	structs.GDTest()
+	smtpTest()
 }
