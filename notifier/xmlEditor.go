@@ -1,19 +1,11 @@
 package main
 
+/*
 import (
 	"encoding/xml"
 	"io/ioutil"
 	"os"
 )
-
-/*
-XMLName       xml.Name `xml:"defaults"`
-EmailListFile string   `xml:"emailListFile"`
-SlackListFile string   `xml:"slackListFile"`
-Subject       string   `xml:"subject"`
-Message       string   `xml:"message"`
-MessageFile   string   `xml:"messageFile"`
-*/
 
 //WriteDflt Write a Defaults struct into a target file
 func (dflt *Defaults) WriteDflt(filename string) error {
@@ -66,3 +58,4 @@ func (dflt *Defaults) SetDfltSlackListFile(newListFile, filename string) error {
 	dflt.SlackListFile = newListFile
 	return dflt.WriteDflt(filename)
 }
+*/

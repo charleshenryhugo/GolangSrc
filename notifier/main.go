@@ -15,13 +15,13 @@ func getStdin() string {
 }
 
 func main() {
-	ntfs := parseNotifiers("notifyrc.xml")
+	ntfs := parseNotifiers(notifyrcFile)
 	emails, slacks, subject, msg := cmdParse()
 
-	scanMsg := getStdin()
-	if scanMsg != "" {
-		msg = scanMsg
-	}
+	// scanMsg := getStdin()
+	// if scanMsg != "" {
+	// 	msg = scanMsg
+	// }
 
 	if err := EmailNotify(emails, subject, msg, ntfs); err == nil {
 		log.Println("Email Notification Successfully")
@@ -33,14 +33,5 @@ func main() {
 	} else {
 		log.Println(err)
 	}
-
-	/*	ntfs := parseNotifiers("notifyrc.xml")
-		token := ntfs.SlackNotifier.Token
-		if slackUsers, err := getSlackUsers(token); err == nil {
-			for _, user := range slackUsers {
-				fmt.Println(user.ID, user.Name)
-			}
-		}
-	*/
 
 }

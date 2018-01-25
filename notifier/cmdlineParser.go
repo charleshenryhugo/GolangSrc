@@ -61,7 +61,7 @@ func cmdParse() (emails, slacks []string, subject string, msg string) {
 	}
 
 	//apply the default settings to message, subject, emails or slacks if any of them is empty
-	dflt := parseDefaults("defaults.xml")
+	dflt := parseDefaults(defaultsFile)
 	if msg == "" {
 		msg = dflt.GetDfltmsg()
 	}

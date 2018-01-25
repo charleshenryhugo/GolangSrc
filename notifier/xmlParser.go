@@ -1,5 +1,6 @@
 package main
 
+/*
 import (
 	"encoding/xml"
 	"io/ioutil"
@@ -116,3 +117,4 @@ func (dflt *Defaults) GetDfltEmailList() []string {
 	}
 	return []string{}
 }
+*/
