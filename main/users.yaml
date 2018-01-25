@@ -1,0 +1,34 @@
+---
+students:
+  -
+    name: Bob Peter
+    fullName:
+      firstName: Bob
+      lastName: Peter
+    sex: male
+    birthday: 1990-12-12
+    selfIntro:
+      long: I am Bob!
+      short: Hi!
+    imageUrls:
+      - 01.jpg
+      - 02.jpg
+      - 03.jpg
+    shemale: false
+  
+  -
+    name: Alice Lily
+    fullName:
+      firstName: Alice
+      lastName: Lily
+    sex: female
+    birthday: 1994-12-12
+    selfIntro:
+      long: I am Alice!
+      short: Hi!
+    imageUrls:
+      - 001.jpg
+      - 002.jpg
+    shemale: true
+
+...

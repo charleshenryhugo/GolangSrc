@@ -11,5 +11,5 @@ func show(values ...interface{}) {
 }
 
 func main() {
-	smtpTest()
+	ymlTest()
 }
