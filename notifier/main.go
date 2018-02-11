@@ -1,37 +1,32 @@
 package main
 
 import (
-	"bufio"
-	"fmt"
-	"log"
 	"os"
+	"sort"
+
+	"github.com/urfave/cli"
 )
 
-func getStdin() string {
-	fmt.Println("Input message to be sent. Press enter if you want to use the default message")
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	return scanner.Text()
-}
-
 func main() {
-	ntfs := parseNotifiers(notifyrcFile)
-	emails, slacks, subject, msg := cmdParse()
+	//build a new app with cli package, and specify some info
+	app := appInit()
 
-	// scanMsg := getStdin()
-	// if scanMsg != "" {
-	// 	msg = scanMsg
-	// }
+	//define flags
+	app.Flags = appFlags()
 
-	if err := EmailNotify(emails, subject, msg, ntfs); err == nil {
-		log.Println("Email Notification Successfully")
-	} else {
-		log.Println(err)
-	}
-	if _, _, err := SlackNotify(slacks, subject, msg, ntfs); err == nil {
-		log.Println("Slack Notification Successfully")
-	} else {
-		log.Println(err)
+	//define commands and subcommands(including actions)
+	app.Commands = appCommands()
+
+	//define app action
+	app.Action = func(ctx *cli.Context) error {
+		ToEmailAddrs = ctx.StringSlice("email-addrs")
+		ToSlackUsers = ctx.StringSlice("slack-ids")
+		return appAction(ctx)
 	}
 
+	//sort flags and commands
+	sort.Sort(cli.FlagsByName(app.Flags))
+	sort.Sort(cli.CommandsByName(app.Commands))
+
+	app.Run(os.Args)
 }
