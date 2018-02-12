@@ -70,13 +70,19 @@ func postMsgChannels(ntf SlackNotifier, channelIDs []string, msgTitle, attachTit
 		_, timestamp, err = api.PostMessage(channelID, msgTitle, params)
 		if err != nil {
 			log.Println(err)
+			//return exact ERR code using the err string info
 			if strings.Contains(err.Error(), "auth") {
-				log.Println("\nTry checking your slack token and send again")
+				log.Println("Your slack token is invalid, please check that.")
 				return channelIDs, timestamp, SLK_TOKEN_INVAL
+			} else if strings.Contains(err.Error(), "dial tcp: lookup slack.com: no such host") {
+				log.Println("You may lose Internet connection or be refused by remote host.",
+					"Try fixing your network and send again")
+				return channelIDs, timestamp, SLK_SVR_CONN_ERR
+			} else if strings.Contains(err.Error(), "channel_not_found") {
+				log.Println("Try checking this slack user(or channel):", channelID, " and send again")
+				return channelIDs, timestamp, SLK_CHL_ERR
 			}
-			log.Println("\nTry checking this slack user(or channel):", channelID, " and send again")
-			return channelIDs, timestamp, SLK_POST_ERR
-
+			return channelIDs, timestamp, SLK_CHL_ERR
 		}
 		log.Println("slack userID(channelID): ", channelID, " posted successfully")
 	}

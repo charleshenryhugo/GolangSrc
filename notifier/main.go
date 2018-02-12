@@ -18,11 +18,7 @@ func main() {
 	app.Commands = appCommands()
 
 	//define app action
-	app.Action = func(ctx *cli.Context) error {
-		ToEmailAddrs = ctx.StringSlice("email-addrs")
-		ToSlackUsers = ctx.StringSlice("slack-ids")
-		return appAction(ctx)
-	}
+	app.Action = appAction
 
 	//sort flags and commands
 	sort.Sort(cli.FlagsByName(app.Flags))

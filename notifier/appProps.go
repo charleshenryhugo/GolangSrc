@@ -1,11 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
+	"log"
 	"strings"
 
 	"github.com/urfave/cli"
+)
+
+//confirm to send notifications, default by false
+var (
+	SendConfirm bool = false
 )
 
 //global input parameters
@@ -46,16 +51,31 @@ func appInit() *cli.App {
 }
 
 func appAction(ctx *cli.Context) error {
+
+	//if user didn't specify any arguments
+	if !(ctx.IsSet("execute-send") && SendConfirm) {
+		log.Println("Please confirm execution using -x or --exe.\nUse -h or --help for more help.")
+		return nil
+	}
+
+	//parse target IDs from flag arguments
+	ToEmailAddrs = ctx.StringSlice("email-addrs")
+	ToSlackUsers = ctx.StringSlice("slack-ids")
 	//append those email addrs stored in the file, only if the file is available
-	if fileBytes, err := ioutil.ReadFile(ToEmailAddrsFile); err == nil {
-		ToEmailAddrs = append(strings.Fields(string(fileBytes)), ToEmailAddrs...)
+	//and user didn't specify any email addrs
+	if fileBytes, err := ioutil.ReadFile(ToEmailAddrsFile); err == nil && len(ToEmailAddrs) == 0 {
+		//ToEmailAddrs = append(strings.Fields(string(fileBytes)), ToEmailAddrs...)
+		ToEmailAddrs = strings.Fields(string(fileBytes))
 	}
 	//append those slack user IDs stored in the file, only if the file is available
-	if fileBytes, err := ioutil.ReadFile(ToSlackUsersFile); err == nil {
-		ToSlackUsers = append(strings.Fields(string(fileBytes)), ToSlackUsers...)
+	//and user didn't specify any target slack IDs
+	if fileBytes, err := ioutil.ReadFile(ToSlackUsersFile); err == nil && len(ToSlackUsers) == 0 {
+		//ToSlackUsers = append(strings.Fields(string(fileBytes)), ToSlackUsers...)
+		ToSlackUsers = strings.Fields(string(fileBytes))
 	}
 	//get message from the file(usually error.log), only if the file is available
-	if fileBytes, err := ioutil.ReadFile(MessageFile); err == nil {
+	//and user didn't specify any message
+	if fileBytes, err := ioutil.ReadFile(MessageFile); err == nil && Message == "" {
 		Message = string(fileBytes)
 	}
 	//apply the default settings to message, subject, emails or slacks
@@ -77,34 +97,18 @@ func appAction(ctx *cli.Context) error {
 		}
 	}
 
-	//parse notifiers from notifiers config file
-	ntfs, err := parseNotifiers(notifyrcFile)
-	if err != NIL {
-		return cli.NewExitError("", int(err))
-	}
-
-	//do email notify
-	if err := EmailNotify(ToEmailAddrs, Subject, Message, ntfs); err == NIL {
-		fmt.Println("email notification success")
-	} else if err == SMTPM_INVAL {
-		fmt.Println("email notification invalid")
-	} else {
-		defer cli.OsExiter(int(err))
-	}
-
-	//do slack notify
-	if _, _, err := SlackNotify(ToSlackUsers, Subject, Message, ntfs); err == NIL {
-		fmt.Println("slack notification success")
-	} else if err == SLK_INVAL {
-		fmt.Println("slack notification invalid")
-	} else {
-		defer cli.OsExiter(int(err))
-	}
-	return nil
+	//operate all possible notifications
+	//using global variables
+	return GenNotify()
 }
 
 func appFlags() []cli.Flag {
 	return []cli.Flag{
+		cli.BoolFlag{
+			Name:        "execute-send, exe, x",
+			Usage:       "explicitly confirm to send notifications",
+			Destination: &SendConfirm,
+		},
 		cli.StringFlag{
 			Name:        "subject, s",
 			Usage:       subjectFlgUsg,

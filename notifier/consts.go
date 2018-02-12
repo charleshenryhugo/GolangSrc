@@ -8,8 +8,8 @@ const (
 
 //config files
 const (
-	notifyrcFile string = "notifyrc"
-	defaultsFile string = "defaults"
+	notifyrcFile string = ".notifyrc"
+	defaultsFile string = ".defaults"
 )
 
 //Notifiers name
@@ -36,24 +36,25 @@ const (
 	CTRLC_TERMINATE     ERR = 130
 
 	//file-reading error code
-	NOTIFRC_PARSE_ERR ERR = 55 //eror occurs while parsing notifier config file
-	DFLTS_PARSE_ERR   ERR = 56 //error occurs while pasing default config file
+	NOTIFRC_PARSE_ERR ERR = 55 //eror occurs while parsing notifier config file(P)
+	DFLTS_PARSE_ERR   ERR = 56 //error occurs while pasing default config file(P)
 
 	//smtpemail error code
-	SMTPM_INVAL         ERR = 11 //smtp notif not valid
-	SMTPM_SVR_CONN_ERR  ERR = 12 //error occurs while dialing to smtpserver, stop and check network, host and port ..to be added..
-	SMTPM_CLT_BLD_ERR   ERR = 13 //error occurs while building a client, stop and check network, host and port
-	SMTPM_AUTH_ERR      ERR = 14 //error occurs while authenticating mail account and password, stop and check your account and network
-	SMTPM_SENDER_ERR    ERR = 15 //error occurs while adding sender account, stop and check your account
-	SMTPM_RCVR_ERR      ERR = 16 //error occurs while adding receivers' accounts, stop and check those account IDs
-	SMTPM_CLT_IO_ERR    ERR = 17 //... while initializing or close a iowriter for email client
-	SMTPM_CLT_DATA_ERR  ERR = 18 //... while trying to write message in the client
-	SMTPM_CLT_CLOSE_ERR ERR = 19 //... while closing an smtpemail client
+	SMTPM_INVAL         ERR = 11 //smtp notif not valid(Not an exact error)
+	SMTPM_SVR_CONN_ERR  ERR = 12 //lose internet connection or get refused by remote host.stop and check network, host and port(P)
+	SMTPM_CLT_BLD_ERR   ERR = 13 //error occurs while building a client, stop and check network, host and port(P)
+	SMTPM_AUTH_ERR      ERR = 14 //error occurs while authenticating mail account and password, stop and check your account and network(P)
+	SMTPM_SENDER_ERR    ERR = 15 //error occurs while adding sender account, stop and check your account(P)
+	SMTPM_RCVR_ERR      ERR = 16 //error occurs while adding receivers' accounts, stop and check those account IDs(P)
+	SMTPM_CLT_IO_ERR    ERR = 17 //... while initializing or close a iowriter for email client(P)
+	SMTPM_CLT_DATA_ERR  ERR = 18 //... while trying to write message in the client(P)
+	SMTPM_CLT_CLOSE_ERR ERR = 19 //... while closing an smtpemail client(P)
 
 	//slack error code
-	SLK_INVAL       ERR = 29 //slack notif not valid
-	SLK_TOKEN_INVAL ERR = 30 //slack token not invalid
-	SLK_POST_ERR    ERR = 31 //token is right, just got stuck in posting to one target user(or channel)
+	SLK_INVAL        ERR = 29 //slack notif not valid(Not an exact error)
+	SLK_TOKEN_INVAL  ERR = 30 //slack token not invalid(P)
+	SLK_CHL_ERR      ERR = 31 //token is right, just got stuck in posting to one target user(or channel)(P)
+	SLK_SVR_CONN_ERR ERR = 32 //got stuck because of the network, or be refused by slack host.(T)
 )
 
 //
