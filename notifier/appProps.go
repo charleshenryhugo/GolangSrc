@@ -44,7 +44,7 @@ func appInit() *cli.App {
 	app.Name = "Notifier"
 	app.Usage = "A simple tool for notification"
 	app.HelpName = "Notifier"
-	app.Version = "1.0.0"
+	app.Version = "1.1.0"
 	app.Author = "ZHU YUE"
 
 	return app
