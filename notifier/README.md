@@ -1,10 +1,8 @@
-## Name
-Notifier
-
-## Overview
+# Notifier
 Notifier is a simple command line tool written in GO and can be used to send notifications through email and slack.
 
-## Description
+
+## Overview
 Notifier is a command line tool, which can send email and slack notifications.(More notification methods to be added)
 
 Users will have to obtain a valid email account and slack token before using Notifier. 
@@ -18,11 +16,11 @@ https://api.slack.com/custom-integrations/legacy-tokens
 ## Requirements
 - darwin (UNIX-like, Mach, BSD)
 
-## Install
+## Installation
 ### download directly:
 download the binary file:
 - Notifier
-and put it in `/usr/local/bin` (or other directory which is included by $PATH)
+and put it in `/usr/local/bin` (or any other directory which is included by $PATH)
 
 download the following config files:
 - .defaults.yml
@@ -34,7 +32,7 @@ Optional: (you can ignore these optional files below)
 - slackListFile
 - emailListFile
 
-### using homebrew
+### use homebrew
 To be added.
 
 ## Usage
@@ -107,7 +105,7 @@ somedir/emailListFile
 google@gmail.com
 yahoo@gmail.com
 ```
-One address in a line and no blank line.
+One email address in a line and no blank line.
 
 In addition, subject and message will be set according to`$HOME/.defaults.yml`, because no message or subject option is specified.
 
@@ -156,10 +154,10 @@ e.g.2
 ```
 notifier default msg "this is a new notification message"
 ```
-This will overwrite the current default notification message to `"this is a new notification message"`.
+This will rewrite the current default notification message to `"this is a new notification message"`.
 You can use the command `default` to overwrite any default settings. 
 
-However, to modify the config file manually is highly recommanded.
+However, modifying config files manually is highly recommanded.
 
 ## Error Codes
 
