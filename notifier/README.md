@@ -128,6 +128,7 @@ That is:
 
 ### Commands
 For the usage of each command, just type `notifier [COMMAND] --help`.
+
 e.g.1
 ```
 notifier default --help
@@ -157,6 +158,7 @@ notifier default msg "this is a new notification message"
 ```
 This will overwrite the current default notification message to `"this is a new notification message"`.
 You can use the command `default` to overwrite any default settings. 
+
 However, to modify the config file manually is highly recommanded.
 
 ## Error Codes
