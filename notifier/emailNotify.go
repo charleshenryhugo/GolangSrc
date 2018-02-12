@@ -146,6 +146,9 @@ func emailNotifyHelp(from string, to []string, subject string, msg string, SMTPH
 //send an email with subject and message provided with parameters
 //to the email address stored in(to []string)
 func EmailNotify(to []string, subject, msg string, ntfs Notifiers) ERR {
+	if len(to) == 0 {
+		return SMTPM_NOTGT
+	}
 	ntf := ntfs.SMTPEmailNotifier
 
 	//check the notification type "smtpemail" and find if the state is "on"

@@ -101,6 +101,9 @@ func postMsgUsers(ntf SlackNotifier, userIDs []string, msgTitle string, attachme
 //to the slack userIDs(ChannelIDs) stored in(to []string)
 //ChannelID and UserID are both available
 func SlackNotify(to []string, subject, msg string, ntfs Notifiers) ([]string, string, ERR) {
+	if len(to) == 0 {
+		return []string{}, "", SLK_NOTGT
+	}
 	ntf := ntfs.SlackNotifier
 	if ntf.Type == "slack" && (ntf.State == true) {
 		attachment := slack.Attachment{Text: msg}

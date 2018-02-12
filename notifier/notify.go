@@ -19,6 +19,8 @@ func GenNotify() error {
 		log.Println("email notification success")
 	} else if err == SMTPM_INVAL {
 		log.Println("email notification invalid")
+	} else if err == SMTPM_NOTGT {
+		log.Println("no target email address(es)")
 	} else {
 		defer cli.OsExiter(int(err))
 	}
@@ -26,6 +28,8 @@ func GenNotify() error {
 	//do slack notify
 	if _, _, err := SlackNotify(ToSlackUsers, Subject, Message, ntfs); err == NIL {
 		log.Println("slack notification success")
+	} else if err == SLK_NOTGT {
+		log.Println("no target slack users(channels)")
 	} else if err == SLK_INVAL {
 		log.Println("slack notification invalid")
 	} else {

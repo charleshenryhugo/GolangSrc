@@ -40,6 +40,7 @@ const (
 	DFLTS_PARSE_ERR   ERR = 56 //error occurs while pasing default config file(P)
 
 	//smtpemail error code
+	SMTPM_NOTGT         ERR = 10 //no target email address
 	SMTPM_INVAL         ERR = 11 //smtp notif not valid(Not an exact error)
 	SMTPM_SVR_CONN_ERR  ERR = 12 //lose internet connection or get refused by remote host.stop and check network, host and port(P)
 	SMTPM_CLT_BLD_ERR   ERR = 13 //error occurs while building a client, stop and check network, host and port(P)
@@ -51,6 +52,7 @@ const (
 	SMTPM_CLT_CLOSE_ERR ERR = 19 //... while closing an smtpemail client(P)
 
 	//slack error code
+	SLK_NOTGT        ERR = 28 //no target slack ids
 	SLK_INVAL        ERR = 29 //slack notif not valid(Not an exact error)
 	SLK_TOKEN_INVAL  ERR = 30 //slack token not invalid(P)
 	SLK_CHL_ERR      ERR = 31 //token is right, just got stuck in posting to one target user(or channel)(P)
