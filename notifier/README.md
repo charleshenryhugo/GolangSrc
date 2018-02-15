@@ -2,22 +2,22 @@
 
 Notifier is a simple command line tool written in GO and can be used to send notifications through email and slack.
 
-
 ## Overview
 
 Notifier is a command line tool, which can send email and slack notifications.(More notification methods to be added)
 
-Users will have to obtain a valid email account and slack token before using Notifier. 
+Users will have to obtain a valid email account and slack token before using Notifier.
 
-Users can only send notifications to their own slack group specified by the slack token. 
+Users can only send notifications to their own slack group specified by the slack token.
 
 Get slack token from:
 
-https://api.slack.com/custom-integrations/legacy-tokens 
+<https://api.slack.com/custom-integrations/legacy-tokens>
 
 ## Requirements
 
 - darwin (UNIX-like, Mach, BSD)
+- amd64
 
 ## Installation
 
@@ -102,7 +102,7 @@ which looks like this:
 
 somedir/slackListFile
 
-``` txt
+```
 U7BL3HC86
 U7BL3IC87
 U7BL3IC88
@@ -120,7 +120,7 @@ e.g.2
 notifier -x -ef "somedir/emailListFile" -k U7BL3HC86 -k U7BL3HC87 -k U7BL3HC88
 ```
 
-This will send a notification to slack ID U7BL3HC86, U7BL3HC87, U7BL3HC88 and the email addresses stored in somedir/emailListFile 
+This will send a notification to slack ID U7BL3HC86, U7BL3HC87, U7BL3HC88 and the email addresses stored in somedir/emailListFile
 which looks like this:
 somedir/emailListFile
 
@@ -133,7 +133,6 @@ One email address in a line and no blank line.
 
 In addition, subject and message will be set according to`$HOME/.defaults.yml`, because no message or subject option is specified.
 
-
 e.g.3
 
 ```
@@ -141,11 +140,11 @@ notifier -x
 ```
 
 There are no command line options specified, so all the parameters w ill be set according to `$HOME/.defaults.yml`
-So the trick is, write all necessary default settings in advance and things become easy. 
+So the trick is, write all necessary default settings in advance and things become easy.
 
 That is:
 
-- create a file(e.g emailListFile) and write all the target email accounts. 
+- create a file(e.g emailListFile) and write all the target email accounts.
 - create a file(e.g slackListFile) and write all the target slack IDs(they must be in your group).
 - create a file(e.g error.log) and write the default message you want to send in the next minute or in the future.
 - configure the files you have just created (or downloaded) in `$HOME/.defaults.yml`.
@@ -188,7 +187,7 @@ notifier default msg "this is a new notification message"
 ```
 
 This will rewrite the current default notification message to `"this is a new notification message"`.
-You can use the command `default` to overwrite any default settings. 
+You can use the command `default` to overwrite any default settings.
 
 However, modifying config files manually is highly recommended.
 

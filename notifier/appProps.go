@@ -99,7 +99,7 @@ func appAction(ctx *cli.Context) error {
 
 	//operate all possible notifications
 	//using global variables
-	return GenNotify()
+	return MultiRoutineNotify()
 }
 
 func appFlags() []cli.Flag {
