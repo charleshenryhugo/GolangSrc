@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"sort"
 	"time"
@@ -22,9 +23,40 @@ func chanDeclare() {
 }
 
 func goroutineTest() {
-	consume(produce())
-	for {
+	Prime()
+}
 
+func Prime() {
+	ch := make(chan int)
+	go generate(ch)
+	for {
+		prime := <-ch
+		log.Println("Prime() received ", prime)
+		fmt.Println(prime)
+		ch1 := make(chan int)
+		go primeFilter(ch, ch1, prime)
+		ch = ch1
+	}
+}
+
+//Send sequence 2,3,4,... to channel "ch"
+func generate(ch chan int) {
+	for i := 2; i < 100; i++ {
+		ch <- i
+		log.Println("generate() :", i)
+	}
+}
+
+//copy the values from channel 'in' to channel 'out',
+//removing those divisible by 'prime'
+func primeFilter(in, out chan int, prime int) {
+	for {
+		i := <-in
+		log.Println("primeFilter() for ", prime, "received ", i)
+		if i%prime != 0 {
+			out <- i
+			log.Println("primeFilter() output ", i)
+		}
 	}
 }
 
